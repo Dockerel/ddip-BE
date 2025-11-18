@@ -1,4 +1,4 @@
-package com.knu.ddip.location.application.dto;
+package com.knu.ddip.location.business.dto;
 
 import lombok.Builder;
 

@@ -1,4 +1,4 @@
-package com.knu.ddip.location.application.util;
+package com.knu.ddip.location.business.util;
 
 public abstract class LocationKeyFactory {
     public static String createUserIdKey(String encodedUserId) {

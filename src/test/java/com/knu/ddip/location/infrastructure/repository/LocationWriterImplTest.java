@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.knu.ddip.location.application.util.LocationKeyFactory.*;
+import static com.knu.ddip.location.business.util.LocationKeyFactory.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional

@@ -3,7 +3,7 @@ package com.knu.ddip.location.presentation.api;
 import com.knu.ddip.auth.domain.AuthUser;
 import com.knu.ddip.auth.presentation.annotation.Login;
 import com.knu.ddip.auth.presentation.annotation.RequireAuth;
-import com.knu.ddip.location.application.dto.UpdateMyLocationRequest;
+import com.knu.ddip.location.business.dto.UpdateMyLocationRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

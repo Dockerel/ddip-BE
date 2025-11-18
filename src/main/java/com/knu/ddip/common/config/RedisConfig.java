@@ -32,7 +32,7 @@ public class RedisConfig {
         serverConfig.setPassword(RedisPassword.of(password));
 
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-                .commandTimeout(Duration.ofMillis(500))
+                .commandTimeout(Duration.ofSeconds(5))
                 .clientOptions(ClientOptions.builder()
                         .autoReconnect(true)
                         .socketOptions(

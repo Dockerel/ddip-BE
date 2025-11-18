@@ -20,7 +20,7 @@ local prevCellId = redis.call('GET', KEYS[1])
 if prevCellId then
     if prevCellId == newCellId then
         redis.call('EXPIRE', KEYS[2], ttl_seconds)
-        return
+        return nil
     end
 
     local oldUsersKey = "cell:" .. prevCellId .. ":users"
@@ -28,7 +28,7 @@ if prevCellId then
 end
 
 if cellIdNotInTargetAreaFlag == 1 then
-    return
+    return nil
 end
 
 redis.call('SET', KEYS[1], newCellId, 'EX', ttl_seconds)
@@ -36,3 +36,5 @@ redis.call('SET', KEYS[1], newCellId, 'EX', ttl_seconds)
 redis.call('SADD', KEYS[3], encodedUserId)
 
 redis.call('ZADD', KEYS[2], expireAt, encodedUserId)
+
+return prevCellId

@@ -1,4 +1,4 @@
-package com.knu.ddip.location.application.service;
+package com.knu.ddip.location.business.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public interface LocationWriter {
 
     void saveAll(List<String> cellIds);
 
-    void saveUserIdByCellIdAtomic(String newCellId, boolean cellIdNotInTargetArea, String encodedUserId);
+    String saveUserIdByCellIdAtomic(String newCellId, boolean cellIdNotInTargetArea, String encodedUserId);
 
     void cleanupExpiredUserLocations(long now);
 }

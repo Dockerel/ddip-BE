@@ -1,6 +1,5 @@
-package com.knu.ddip.location.application.util;
+package com.knu.ddip.location.business.util;
 
-import com.knu.ddip.location.application.util.UuidBase64Utils;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

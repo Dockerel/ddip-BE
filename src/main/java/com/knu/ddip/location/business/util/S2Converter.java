@@ -1,10 +1,10 @@
-package com.knu.ddip.location.application.util;
+package com.knu.ddip.location.business.util;
 
 import com.google.common.geometry.S2CellId;
 import com.google.common.geometry.S2LatLng;
 import org.springframework.stereotype.Component;
 
-import static com.knu.ddip.location.application.util.S2Constants.LEVEL;
+import static com.knu.ddip.location.business.util.S2Constants.LEVEL;
 
 @Component
 public class S2Converter {

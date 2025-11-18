@@ -1,12 +1,12 @@
-package com.knu.ddip.location.application.service;
+package com.knu.ddip.location.business.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.geometry.*;
-import com.knu.ddip.location.application.dto.UpdateMyLocationRequest;
-import com.knu.ddip.location.application.util.S2Constants;
-import com.knu.ddip.location.application.util.S2Converter;
-import com.knu.ddip.location.application.util.UuidBase64Utils;
+import com.knu.ddip.location.business.dto.UpdateMyLocationRequest;
+import com.knu.ddip.location.business.util.LocationPublisher;
+import com.knu.ddip.location.business.util.S2Converter;
+import com.knu.ddip.location.business.util.UuidBase64Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static com.knu.ddip.location.application.util.S2Constants.*;
+import static com.knu.ddip.location.business.util.S2Constants.LEVEL;
 
 @Slf4j
 @Service
@@ -32,6 +32,8 @@ public class LocationService {
 
     private final LocationReader locationReader;
     private final LocationWriter locationWriter;
+
+    private final LocationPublisher locationPublisher;
 
     private final S2Converter s2Converter;
 
@@ -74,7 +76,9 @@ public class LocationService {
 
         String encodedUserId = UuidBase64Utils.uuidToBase64String(userId);
 
-        locationWriter.saveUserIdByCellIdAtomic(cellId, cellIdNotInTargetArea, encodedUserId);
+        String prevCellId = locationWriter.saveUserIdByCellIdAtomic(cellId, cellIdNotInTargetArea, encodedUserId);
+
+        locationPublisher.publishUpdateUserCountStatusMessage(prevCellId, cellId);
     }
 
     // 요청 전송 시 이웃 userIds 조회

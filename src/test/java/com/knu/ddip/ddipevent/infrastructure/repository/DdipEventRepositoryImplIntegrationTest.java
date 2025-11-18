@@ -5,7 +5,7 @@ import com.knu.ddip.config.MySQLTestContainerConfig;
 import com.knu.ddip.config.RedisTestContainerConfig;
 import com.knu.ddip.config.TestEnvironmentConfig;
 import com.knu.ddip.ddipevent.domain.DdipEvent;
-import com.knu.ddip.location.application.util.S2Converter;
+import com.knu.ddip.location.business.util.S2Converter;
 import com.knu.ddip.user.infrastructure.repository.UserRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
