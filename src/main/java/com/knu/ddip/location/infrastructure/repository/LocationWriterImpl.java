@@ -1,6 +1,6 @@
 package com.knu.ddip.location.infrastructure.repository;
 
-import com.knu.ddip.location.application.service.LocationWriter;
+import com.knu.ddip.location.business.service.LocationWriter;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static com.knu.ddip.location.application.util.LocationKeyFactory.*;
+import static com.knu.ddip.location.business.util.LocationKeyFactory.*;
 
 @Slf4j
 @Repository
@@ -75,7 +75,7 @@ public class LocationWriterImpl implements LocationWriter {
     }
 
     @Override
-    public void saveUserIdByCellIdAtomic(String newCellId, boolean cellIdNotInTargetArea, String encodedUserId) {
+    public String saveUserIdByCellIdAtomic(String newCellId, boolean cellIdNotInTargetArea, String encodedUserId) {
         String userIdKey = createUserIdKey(encodedUserId);
         String cellIdUsersKey = createCellIdUsersKey(newCellId);
         String cellIdExpiriesKey = createCellIdExpiriesKey(newCellId);
@@ -84,11 +84,13 @@ public class LocationWriterImpl implements LocationWriter {
         long expireAt = now + TTL_SECONDS * 1000L;
         int cellIdNotInTargetAreaFlag = cellIdNotInTargetArea ? 1 : 0;
 
-        redisTemplate.execute(
+        String prevCellId = redisTemplate.execute(
                 saveUserLocationScript,
                 Arrays.asList(userIdKey, cellIdExpiriesKey, cellIdUsersKey),
                 newCellId, encodedUserId, String.valueOf(TTL_SECONDS), String.valueOf(expireAt), String.valueOf(cellIdNotInTargetAreaFlag)
         );
+
+        return prevCellId;
     }
 
     @Override

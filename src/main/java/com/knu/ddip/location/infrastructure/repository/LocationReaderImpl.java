@@ -1,13 +1,14 @@
 package com.knu.ddip.location.infrastructure.repository;
 
-import com.knu.ddip.location.application.service.LocationReader;
-import com.knu.ddip.location.application.util.LocationKeyFactory;
+import com.knu.ddip.location.business.service.LocationReader;
+import com.knu.ddip.location.business.util.LocationKeyFactory;
 import com.knu.ddip.location.exception.LocationNotFoundException;
 import com.knu.ddip.location.infrastructure.entity.LocationEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Repository;
 
 import java.nio.charset.StandardCharsets;
@@ -69,5 +70,22 @@ public class LocationReaderImpl implements LocationReader {
     @Override
     public boolean isCellIdNotInTargetArea(String cellId) {
         return locationJpaRepository.findById(cellId).isEmpty();
+    }
+
+    @Override
+    public List<String> findAllCellIds() {
+        return locationJpaRepository.findAll().stream()
+                .map(LocationEntity::getCellId)
+                .toList();
+    }
+
+    @Override
+    public int getUsersCountByCellId(String cellId) {
+        SetOperations<String, String> setOps = redisTemplate.opsForSet();
+        Set<String> members = setOps.members(LocationKeyFactory.createCellIdUsersKey(cellId));
+        if (members != null) {
+            return members.size();
+        }
+        return 0;
     }
 }

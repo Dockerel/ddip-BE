@@ -1,4 +1,4 @@
-package com.knu.ddip.location.application.service;
+package com.knu.ddip.location.business.service;
 
 import java.util.List;
 
@@ -10,4 +10,8 @@ public interface LocationReader {
     List<String> findUserIdsByCellIds(List<String> targetCellIds);
 
     boolean isCellIdNotInTargetArea(String cellId);
+
+    List<String> findAllCellIds();
+
+    int getUsersCountByCellId(String cellId);
 }
