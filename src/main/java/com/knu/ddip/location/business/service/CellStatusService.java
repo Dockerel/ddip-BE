@@ -44,4 +44,8 @@ public class CellStatusService {
         fenwickTree.update(index, count);
     }
 
+    public void clearUserCount() {
+        fenwickTree.clear();
+    }
+
 }

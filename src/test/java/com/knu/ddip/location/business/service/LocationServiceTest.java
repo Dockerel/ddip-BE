@@ -1,12 +1,12 @@
-package com.knu.ddip.location.application.service;
+package com.knu.ddip.location.business.service;
 
 import com.knu.ddip.config.IntegrationTestConfig;
 import com.knu.ddip.config.MySQLTestContainerConfig;
 import com.knu.ddip.config.RedisTestContainerConfig;
 import com.knu.ddip.config.TestEnvironmentConfig;
-import com.knu.ddip.location.application.dto.UpdateMyLocationRequest;
-import com.knu.ddip.location.application.util.S2Converter;
-import com.knu.ddip.location.application.util.UuidBase64Utils;
+import com.knu.ddip.location.business.dto.UpdateMyLocationRequest;
+import com.knu.ddip.location.business.util.S2Converter;
+import com.knu.ddip.location.business.util.UuidBase64Utils;
 import com.knu.ddip.location.exception.LocationNotFoundException;
 import com.knu.ddip.location.infrastructure.repository.LocationJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +24,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.*;
 
-import static com.knu.ddip.location.application.util.LocationKeyFactory.*;
-import static com.knu.ddip.location.application.util.S2Constants.LEVEL;
+import static com.knu.ddip.location.business.util.LocationKeyFactory.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

@@ -1,6 +1,6 @@
-package com.knu.ddip.location.application.scheduler;
+package com.knu.ddip.location.business.scheduler;
 
-import com.knu.ddip.location.application.service.LocationWriter;
+import com.knu.ddip.location.business.service.LocationWriter;
 import lombok.RequiredArgsConstructor;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.scheduling.annotation.Scheduled;

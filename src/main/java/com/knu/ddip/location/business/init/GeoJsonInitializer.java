@@ -1,6 +1,6 @@
-package com.knu.ddip.location.application.init;
+package com.knu.ddip.location.business.init;
 
-import com.knu.ddip.location.application.service.LocationService;
+import com.knu.ddip.location.business.service.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

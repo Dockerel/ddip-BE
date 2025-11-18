@@ -1,4 +1,4 @@
-package com.knu.ddip.location.application.util;
+package com.knu.ddip.location.business.util;
 
 import java.nio.ByteBuffer;
 import java.util.Base64;
