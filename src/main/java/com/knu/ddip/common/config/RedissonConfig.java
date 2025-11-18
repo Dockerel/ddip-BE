@@ -18,8 +18,8 @@ public class RedissonConfig {
     @Value("${spring.data.redis.port}")
     private int port;
 
-//    @Value("${spring.data.redis.password}")
-//    private String password;
+    @Value("${spring.data.redis.password}")
+    private String password;
 
     @Bean
     public RedissonClient redissonClient() {
@@ -27,7 +27,7 @@ public class RedissonConfig {
 
         config.useSingleServer()
                 .setAddress("redis://" + host + ":" + port)
-//                .setPassword(password)
+                .setPassword(password)
                 .setConnectionPoolSize(10)
                 .setConnectionMinimumIdleSize(1);
 
