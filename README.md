@@ -57,8 +57,8 @@
 > [**Lua Script 선택**](https://github.com/Dockerel/ddip-BE/blob/main/src/main/resources/luascript/save_user_location.lua)
 
 ### 성과
-* Lua Script 도입으로 synchronized 대비 위치 갱신 평균 응답시간 5.23배 개선
-* 1s &rarr; 191ms, 동시 위치 갱신 1000건 기준
+* Lua Script 도입으로 synchronized 대비 위치 갱신 평균 응답시간 5배 개선
+* 1s &rarr; 191ms, 동시 위치 갱신 1,000건 기준
 
 
 ## 2. 위치 기반 요청 조회
@@ -69,7 +69,7 @@
 **하버사인 방식**
 * 요청 수가 늘어났을 때를 대비하여 더욱 정확한 거리수 정렬을 위해 위도, 경도 기반으로 거리를 계산하는 방식인 하버사인 방식 도입
 
-#### 공간 인덱싱
+**공간 인덱싱**
 * 지리적 정보를 효율적으로 검색하기 위해, 공간 데이터에 적용시키는 인덱스인 공간 인덱스 도입
 ```java
 @Query(value = """
@@ -87,9 +87,26 @@
 
 ### 성과
 * 공간 인덱스를 도입하여 기존 유클리디안 방식 대비 조회 시간 10배 개선
-* 1600ms &rarr; 160ms, 랜덤 위치 요청 1000건 기준
+* 1,600ms &rarr; 160ms, 랜덤 위치 요청 1,000건 기준
 
 ## 3. 실시간 유저 수 집계
 ### 개요
+* 실시간 유저 수 집계를 위해 레디스에 셀별 개별 요청을 반복적으로 넣어 전체 사용자 수를 집계
+* 많은 호출과 부하로 인해 응답 지연, 서버 과부하 문제 발생
+
 ### 문제 및 의사결정 과정
+#### 2. 펜윅트리와 RabbitMQ 도입
+**펜윅트리**
+* 펜윅트리(Fenwick Tree)는 최하위 켜져있는 비트를 기반으로 트리를 만들어 동적배열에서 구간 합을 효율적으로 구할 수 있는 자료구조
+* [FenwickTree.java](https://github.com/Dockerel/ddip-BE/blob/main/src/main/java/com/knu/ddip/location/business/util/FenwickTree.java)
+* [CellStatusService.java](https://github.com/Dockerel/ddip-BE/blob/main/src/main/java/com/knu/ddip/location/business/service/CellStatusService.java)
+
+**RabbitMQ**
+* RabbitMQ 메시지큐 도입으로 동시성 문제 방지
+* 트래픽 조절 및 부하 분산 가능
+
 ### 성과
+* 기존 전체 집계 성능 대비 84배 개선
+* 105,788,709ns &rarr; 1,262,875ns, 유저 위치 10,000건 기준
+* 유저 위치가 10배로 증가해도, 기존 전체 집계 성능 대비 47배 개선
+* 105,788,709ns &rarr; 2,256,458ns, 유저 위치 100,000건 기준
