@@ -63,8 +63,31 @@
 
 ## 2. 위치 기반 요청 조회
 ### 개요
+* 유저 위치 기준 요청 거리순 정렬을 위해 비효율적인 유클리디안 거리 방식을 사용하고 있었음
 ### 문제 및 의사결정 과정
+#### 1. 하버사인 방식 및 공간 인덱싱 도입
+**하버사인 방식**
+* 요청 수가 늘어났을 때를 대비하여 더욱 정확한 거리수 정렬을 위해 위도, 경도 기반으로 거리를 계산하는 방식인 하버사인 방식 도입
+
+#### 공간 인덱싱
+* 지리적 정보를 효율적으로 검색하기 위해, 공간 데이터에 적용시키는 인덱스인 공간 인덱스 도입
+```java
+@Query(value = """
+                SELECT * FROM ddip_event
+                WHERE ST_CONTAINS(ST_Buffer(ST_SRID(POINT(:lng, :lat), 4326), :dist), local_point)
+                ORDER BY ST_Distance_Sphere(ST_SRID(POINT(:lng, :lat), 4326), local_point)
+            """, nativeQuery = true)
+    List<DdipEventEntity> findAllByDistance(@Param("lng") Double lng, @Param("lat") Double lat, @Param("dist") Double dist);
+```
+
+* 유저의 위치를 기준으로 해당 영역이 지정한 범위내에 포함되는지 확인하는 방식
+<img width="476" height="333" alt="image" src="https://github.com/user-attachments/assets/c6b696cd-77d1-420e-bc1f-e504198703b3" />
+
+* 유저의 스마트폰 화면의 모서리와 현재 사용자 위치 기준 가장 긴 거리 기반으로 해당 거리를 반지름, 유저의 좌표를 중심으로 하는 원을 만들어 해당 반경 내에 요청들을 가져오는 방식
+
 ### 성과
+* 공간 인덱스를 도입하여 기존 유클리디안 방식 대비 조회 시간 10배 개선
+* 1600ms &rarr; 160ms, 랜덤 위치 요청 1000건 기준
 
 ## 3. 실시간 유저 수 집계
 ### 개요
