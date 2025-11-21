@@ -5,6 +5,8 @@
 
 ## 기술 스택
 <p dir="auto">
+<img src="https://img.shields.io/badge/-Java-DB6900?logo=Java&amp;logoColor=white&amp;labelColor=DB6900" style="max-width: 100%;">
+<br>
 <img src="https://img.shields.io/badge/-Spring-6DB33F?logo=Spring&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
 <img src="https://img.shields.io/badge/-SpringBoot-6DB33F?logo=springboot&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
 <img src="https://img.shields.io/badge/-SpringDataJpa-6DB33F?logo=SpringDataJpa&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
