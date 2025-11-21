@@ -3,6 +3,22 @@
 ## 개요
 캠퍼스에서 위치 기반 주변 학생들과 실시간 정보를 거래할 수 있는 서비스
 
+## 기술 스택
+<p dir="auto">
+<img src="https://img.shields.io/badge/-Spring-6DB33F?logo=Spring&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
+<img src="https://img.shields.io/badge/-SpringBoot-6DB33F?logo=springboot&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
+<img src="https://img.shields.io/badge/-SpringDataJpa-6DB33F?logo=SpringDataJpa&amp;logoColor=white&amp;labelColor=6DB33F" style="max-width: 100%;">
+<img src="https://img.shields.io/badge/-Junit5-25A162?logo=Junit5&amp;logoColor=white&amp;labelColor=25A162" style="max-width: 100%;">
+<br>
+<img src="https://img.shields.io/badge/-MySql-438CB2?logo=MySql&amp;logoColor=white&amp;labelColor=438CB2" style="max-width: 100%;">
+<img src="https://img.shields.io/badge/-Redis-FF4438?logo=Redis&amp;logoColor=white&amp;labelColor=FF4438" style="max-width: 100%;">
+<br>
+<img src="https://img.shields.io/badge/-RabbitMQ-FF6600?logo=RabbitMQ&amp;logoColor=white&amp;labelColor=FF6600" style="max-width: 100%;">
+</p>
+
+## 개발 정보
+* 2024.09 - 2024.11 (3M / 6명) [BE, AI]
+
 ## 시스템 아키텍처
 <img width="954" height="472" alt="image" src="https://github.com/user-attachments/assets/274ad5a9-a1ce-45da-9809-8e42ae274eaa" />
 
