@@ -17,7 +17,7 @@
 </p>
 
 ## 개발 정보
-* 2024.09 - 2024.11 (3M / 6명) [BE, AI]
+* 2025.07 - 2025.10 (4M / 5명) [BE]
 
 ## 시스템 아키텍처
 <img width="954" height="472" alt="image" src="https://github.com/user-attachments/assets/274ad5a9-a1ce-45da-9809-8e42ae274eaa" />
