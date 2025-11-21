@@ -3,6 +3,9 @@
 ## 개요
 캠퍼스에서 위치 기반 주변 학생들과 실시간 정보를 거래할 수 있는 서비스
 
+## 개발 정보
+* 2025.07 - 2025.10 (4M / 5명) [BE]
+
 ## 기술 스택
 <p dir="auto">
 <img src="https://img.shields.io/badge/-Java-DB6900?logo=Java&amp;logoColor=white&amp;labelColor=DB6900" style="max-width: 100%;">
@@ -17,9 +20,6 @@
 <br>
 <img src="https://img.shields.io/badge/-RabbitMQ-FF6600?logo=RabbitMQ&amp;logoColor=white&amp;labelColor=FF6600" style="max-width: 100%;">
 </p>
-
-## 개발 정보
-* 2025.07 - 2025.10 (4M / 5명) [BE]
 
 ## 시스템 아키텍처
 <img width="954" height="472" alt="image" src="https://github.com/user-attachments/assets/274ad5a9-a1ce-45da-9809-8e42ae274eaa" />
